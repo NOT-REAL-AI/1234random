@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СЕКРЕТНЫЙ ОГРОМНЫЙ САЙТ · РЕТРО ВОЛНА</title>
+    <style>
+        /* ========== ГЛОБАЛЬНЫЙ СТИЛЬ ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0d0b1a 0%, #1a1b2f 100%);
+            color: #b5fffc;
+            text-shadow: 0 0 8px #00f7ff, 0 0 18px #ff00d4;
+            min-height: 300vh; /* Огромная высота для скролла */
+            overflow-x: hidden;
+        }
+
+        /* неоновый бордер */
+        .section {
+            border: 2px solid #2affb6;
+            box-shadow: 0 0 30px #ff00c1, inset 0 0 20px #00f7ff;
+            margin: 8vh 4vw;
+            padding: 5vh 5vw;
+            backdrop-filter: blur(3px);
+            background: rgba(10, 5, 25, 0.6);
+            transition: 0.3s;
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; /* неровная ретро граница */
+        }
+
+        .section:hover {
+            background: rgba(30, 10, 50, 0.8);
+            box-shadow: 0 0 60px #ff66ff, 0 0 120px #3eff9e;
+        }
+
+        h1, h2 {
+            font-family: 'Courier New', monospace;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { text-shadow: 3px 0 0 #ff00c1, -3px 0 0 #00ffff; }
+            20% { text-shadow: -6px 0 0 #ff00c1, 6px 0 0 cyan; }
+            40% { text-shadow: 6px 0 0 fuchsia, -6px 0 0 lime; }
+            60% { text-shadow: 10px 0 0 yellow, -10px 0 0 blue; }
+            80% { text-shadow: -8px 0 0 red, 8px 0 0 cyan; }
+        }
+
+        /* анимация бегущей строки (сикрет) */
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            background: #000c;
+            border-top: 2px dashed #ff66b2;
+            border-bottom: 2px dashed #66ffb2;
+            padding: 12px 0;
+            font-size: 2rem;
+            white-space: nowrap;
+            color: #f0f;
+        }
+
+        .marquee span {
+            display: inline-block;
+            animation: scroll 25s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-200%); }
+        }
+
+        /* сетка с карточками — атака огромности */
+        .grid-holder {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin: 6rem 2rem;
+        }
+
+        .card {
+            background: black;
+            border: 4px solid #2affb6;
+            padding: 2rem;
+            transform: rotate(0.5deg);
+            transition: 0.2s;
+            box-shadow: 15px 15px 0 #ff00c1;
+            color: #90ffe4;
+            font-size: 1.5rem;
+            text-align: center;
+            border-radius: 30px 0 30px 0;
+            word-break: break-word;
+        }
+
+        .card:nth-child(even) {
+            transform: rotate(-1.2deg);
+            box-shadow: -15px -15px 0 cyan;
+        }
+
+        .card:hover {
+            background: #11001c;
+            box-shadow: 0 0 50px #ff00aa, 0 0 90px #00e0ff;
+            transform: scale(1.07) rotate(0deg);
+            border-color: white;
+        }
+
+        /* гигантский список */
+        ul.biglist {
+            font-size: 2rem;
+            list-style-type: "⚡ ";
+            columns: 2;
+            line-height: 2.2;
+        }
+
+        li {
+            border-left: 10px solid fuchsia;
+            padding-left: 20px;
+            margin: 25px 0;
+            transition: 0.3s;
+        }
+
+        li:hover {
+            border-left: 30px solid cyan;
+            background: #140b2b;
+        }
+
+        /* парящие неоновые кнопки */
+        .button {
+            display: inline-block;
+            background: none;
+            border: 4px solid #ff00d4;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            padding: 25px 55px;
+            margin: 30px;
+            cursor: crosshair;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px cyan, 0 0 40px magenta;
+            transition: 0.2s;
+            border-radius: 80px 0 80px 0;
+        }
+
+        .button:hover {
+            background: #ff00d4;
+            color: black;
+            border-color: cyan;
+            box-shadow: 0 0 80px white, 0 0 120px lime;
+            transform: scale(1.2) rotate(2deg);
+        }
+
+        /* секретное видео / iframe-заглушка (без реального видео, но тег есть) */
+        .secret-video-box {
+            display: flex;
+            justify-content: center;
+            background: #050111;
+            border: 10px double #ff44ee;
+            padding: 3rem;
+        }
+
+        .video-placeholder {
+            width: 800px;
+            height: 400px;
+            max-width: 100%;
+            background: repeating-linear-gradient(45deg, #f0f, #ff0, #0ff, #f0f);
+            background-size: 300% 300%;
+            animation: hue 9s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: black;
+            text-shadow: 0 0 20px white;
+            border: 12px ridge cyan;
+        }
+
+        @keyframes hue {
+            0% { filter: hue-rotate(0deg); background-position: 0% 0%; }
+            100% { filter: hue-rotate(720deg); background-position: 100% 100%; }
+        }
+
+        /* гигантский футер */
+        footer {
+            background: #000814;
+            border-top: 15px double #b300ff;
+            font-size: 2rem;
+            padding: 5rem;
+            text-align: center;
+            margin-top: 300px;
+            color: #adffea;
+        }
+
+        /* для огромности — просто куча лишних спан-блоков */
+        .trash-blocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .trash {
+            background: #1a0033;
+            border-radius: 50% 20% / 40% 60%;
+            width: 120px;
+            height: 120px;
+            filter: drop-shadow(0 0 15px magenta);
+            border: 1px solid cyan;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: spin 12s infinite linear;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.4); background: #550066; }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* дополнительный блок с очень длинным предупреждением */
+        .wall-of-text {
+            font-size: 1.8rem;
+            max-height: 400px;
+            overflow-y: scroll;
+            background: #010016;
+            padding: 3rem;
+            border: 12px inset #f6f;
+            scrollbar-color: fuchsia black;
+            line-height: 1.7;
+        }
+
+        /* сетка иконок */
+        .icon-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-evenly;
+            margin: 5rem 0;
+        }
+
+        .icon {
+            background: black;
+            padding: 25px;
+            font-size: 3rem;
+            border-radius: 50% 20% 50% 20%;
+            border: 3px solid #0ff;
+            transition: 0.2s;
+        }
+
+        .icon:hover {
+            background: #ffb3ff;
+            color: black;
+            transform: translateY(-40px) scale(1.3);
+        }
+
+        /* график / прогресс бар — для секретности */
+        progress {
+            width: 90%;
+            height: 80px;
+            border: 4px solid #00ffc3;
+            border-radius: 0;
+            color: cyan;
+            background: black;
+        }
+        progress::-webkit-progress-bar { background: black; }
+        progress::-webkit-progress-value { background: #f0f; box-shadow: 0 0 25px #0ff; }
+
+        /* ========== ВСЁ ВМЕСТЕ ========== */
+    </style>
+</head>
+<body>
+
+    <!-- БЕСКОНЕЧНАЯ ШАПКА-МАРКИ -->
+    <div class="marquee">
+        <span>⚡ СЕКРЕТНЫЙ ОГРОМНЫЙ САЙТ • НИКОМУ НЕ ГОВОРИ • АКУЛЫ ТЕМА? ⚡ ГЛЮК • РЕТРО • НЕОБЪЯСНИМО ⚡ ТЫСЯЧИ СТРОК КОДА ⚡ НЕ ЗАКРЫВАЙ ВКЛАДКУ ⚡ СЕКРЕТНО ⚡</span>
+    </div>
+
+    <!-- ГИГАНТСКИЙ ХЕДЕР -->
+    <header class="section" style="text-align: center; margin-top: 1rem;">
+        <h1 style="font-size: 7rem;">⚡ СЕКРЕТ ⚡</h1>
+        <h2 style="font-size: 4rem;">▰▰▰ ОГРОМНЫЙ САЙТ ▰▰▰</h2>
+        <p style="font-size: 2.5rem; margin: 4rem 0;">ПРОСТО ОГРОМНЫЙ · РАБОЧИЙ · КОД · ТЕМА: АКУЛЫ? НО ТЫ ДЕРЖИШЬ В СЕКРЕТЕ</p>
+        <div class="button">НАЖМИ МЕНЯ НЕ БОЙСЯ</div>
+        <div class="button">⚠️ НЕ КЛИКАЙ ⚠️</div>
+    </header>
+
+    <!-- ОГРОМНАЯ СЕТКА ИЗ 24 КАРТОЧЕК (ДЛЯ МАССИВНОСТИ) -->
+    <div class="grid-holder">
+        <div class="card">🦈 АКУЛА НЕ ТЕМА, НО ПУСТЬ БУДЕТ 🦈</div>
+        <div class="card">СЕКРЕТНО 1</div>
+        <div class="card">СЕКРЕТНО 2</div>
+        <div class="card">СЕКРЕТНО 3</div>
+        <div class="card">ТЫСЯЧА СТРОК</div>
+        <div class="card">НЕЙРОСЕТЬ ВНУТРИ?</div>
+        <div class="card">НА САМОМ ДЕЛЕ ПРОСТО CSS</div>
+        <div class="card">НО ВСЕ РАБОТАЕТ</div>
+        <div class="card">БОЛЬШЕ КАРТОЧЕК</div>
+        <div class="card">БОГУ АНОНИМУСА</div>
+        <div class="card">СИЯЕТ В ТЕМНОТЕ</div>
+        <div class="card">ГЛИТЧ 100%</div>
+        <div class="card">🚀 РЕТРОВОЛНА</div>
+        <div class="card">🕹️ АРКАДА 1984</div>
+        <div class="card">НЕ СУДИ СТРОГО</div>
+        <div class="card">АКУЛЫ? ЛАДНО: 🦈🦈🦈</div>
+        <div class="card">ВТОРОЙ РЯД</div>
+        <div class="card">НА САМОМ ДЕЛЕ ИХ 24</div>
+        <div class="card">ДЛЯ ОГРОМНОСТИ</div>
+        <div class="card">24 КАРТОЧКИ</div>
+        <div class="card">И КАЖДАЯ ЖИВАЯ</div>
+        <div class="card">ПРИ НАВЕДЕНИИ</div>
+        <div class="card">СВЕТИТСЯ</div>
+        <div class="card">🦈 ФИНАЛЬНАЯ АКУЛА</div>
+    </div>
+
+    <!-- БЛОК С НЕВЕРОЯТНО ДЛИННЫМ СПИСКОМ -->
+    <div class="section">
+        <h2 style="font-size: 4rem;">⚡ СЕКРЕТНЫЙ ПЕРЕЧЕНЬ (ОЧЕНЬ ДЛИННЫЙ) ⚡</h2>
+        <ul class="biglist">
+            <li>Пункт №1 — СЕКРЕТНО</li>
+            <li>Пункт №2 — ОГРОМНО</li>
+            <li>Пункт №3 — ЗАПРЕЩЕНО</li>
+            <li>Пункт №4 — НЕ ГОВОРИ НИКОМУ</li>
+            <li>Пункт №5 — АКУЛЫ ПРИПЛЫЛИ</li>
+            <li>Пункт №6 — 8-БИТ</li>
+            <li>Пункт №7 — НЕОБЪЯСНИМО</li>
+            <li>Пункт №8 — СИЯЕТ</li>
+            <li>Пункт №9 — ГЛИТЧ-ГЛИТЧ</li>
+            <li>Пункт №10 — ВОЛНЫ</li>
+            <li>Пункт №11 — ЭЛЕКТРОНИКА</li>
+            <li>Пункт №12 — 1987</li>
+            <li>Пункт №13 — ВИНТАЖ</li>
+            <li>Пункт №14 — КАССЕТА</li>
+            <li>Пункт №15 — ФИНАЛ БЛИЗКО</li>
+        </ul>
+        <div style="font-size: 3rem; text-align: center;">🔥 ВСЕГО 15+ ПУНКТОВ, НО ОНИ ЗАНИМАЮТ МЕСТО 🔥</div>
+    </div>
+
+    <!-- ВИДЕО-ЗАГЛУШКА (ВМЕСТО НАСТОЯЩЕГО ВИДЕО ПРОСТО БЛОК) -->
+    <div class="section secret-video-box">
+        <div class="video-placeholder">
+            ⚡⚡⚡ СЕКРЕТНОЕ ВИДЕО ⚡⚡⚡
+            <br>(ЗДЕСЬ МОГЛА БЫТЬ АКУЛА)
+        </div>
+    </div>
+
+    <!-- ДОП. КОНТЕНТ: КУЧА МАЛЕНЬКИХ АНИМИРОВАННЫХ ФИГУР -->
+    <div style="padding: 3rem;">
+        <h2 style="font-size: 3.5rem; text-align: center;">~ БЛОК ИЗ 30 ВРАЩАЮЩИХСЯ ШАЙБ ~</h2>
+        <div class="trash-blocks">
+            <div class="trash">01</div><div class="trash">02</div><div class="trash">03</div><div class="trash">04</div>
+            <div class="trash">05</div><div class="trash">06</div><div class="trash">07</div><div class="trash">08</div>
+            <div class="trash">09</div><div class="trash">10</div><div class="trash">11</div><div class="trash">12</div>
+            <div class="trash">13</div><div class="trash">14</div><div class="trash">15</div><div class="trash">16</div>
+            <div class="trash">17</div><div class="trash">18</div><div class="trash">19</div><div class="trash">20</div>
+            <div class="trash">21</div><div class="trash">22</div><div class="trash">23</div><div class="trash">24</div>
+            <div class="trash">25</div><div class="trash">26</div><div class="trash">27</div><div class="trash">28</div>
+            <div class="trash">29</div><div class="trash">30</div>
+        </div>
+    </div>
+
+    <!-- СТЕНА ТЕКСТА (LONG TEXT WALL) -->
+    <div class="section">
+        <h2 style="font-size: 3rem;">⚠️ ПРОСТО ОГРОМНАЯ СТЕНА ⚠️</h2>
+        <div class="wall-of-text">
+            <p>Секретный документ №1: Никому не говори про этот сайт. Это просто тестовый огромный HTML-код, но он рабочий! Здесь могло бы быть что угодно, но это просто рыба. Рыба-акула? Возможно. Обратите внимание на неоновые тени и безумный глитч-эффект. Всё это чистейший CSS и немного семантики. Мы специально нагромоздили кучу элементов, чтобы визуально сайт казался невероятно массивным. Тысячи строк кода (шучу, около 350, но выглядит как 100500). Анимации, сетки, карточки... хочешь верь, хочешь проверь. Этот параграф будет прокручиваться в маленьком окошке, но внутри него очень много букв. Продолжаем заполнять эфир бессмысленными сообщениями, чтобы увеличить высоту документа и создать эффект «огромного сайта». Вдруг тут появятся настоящие акулы? Нет, это просто ретро-стилистика. Но мы держим в секрете истинную тему. Пусть будет просто «огромный сайт». Ещё немного текста, чтобы полоса прокрутки внутри была активна. Почти заполнили... Осталось чуть-чуть... Всё, хватит.</p>
+            <p>Второй абзац для объёма. Секретные материалы. Правительство не хочет, чтобы вы видели этот сайт. Он слишком огромен. Слишком ярок. Слишком неон. Мы нарушаем все законы веб-дизайна, и это весело. Обратите внимание на шрифт Courier — он придаёт атмосферу старого терминала. А ещё эти дикие рамки и тени. Каждая карточка дышит киберпанком. Проект полностью безопасен, просто тест. Кстати, в нижней части страницы есть прогресс-бар, показывающий уровень секретности. Заполнен на 88%. Как раз подходит для такой конспирологии. Никому ни слова, ладно? Просто наслаждайся огромным сайтом. Мы могли бы добавить ещё 100 карточек, но и так сойдёт.</p>
+        </div>
+    </div>
+
+    <!-- ИКОНКИ (ДЛЯ КРАСОТЫ) -->
+    <div class="icon-grid">
+        <div class="icon">🌀</div><div class="icon">⚡</div><div class="icon">🕹️</div><div class="icon">💾</div>
+        <div class="icon">📼</div><div class="icon">📟</div><div class="icon">🔮</div><div class="icon">🎮</div>
+        <div class="icon">👾</div><div class="icon">🤖</div><div class="icon">💀</div><div class="icon">🎰</div>
+    </div>
+
+    <!-- ПРОГРЕСС СЕКРЕТНОСТИ -->
+    <div class="section" style="text-align: center;">
+        <h2>УРОВЕНЬ СЕКРЕТНОСТИ: [████████░░] 88%</h2>
+        <progress value="88" max="100"></progress>
+        <div style="font-size: 2rem;">Доступ только для посвящённых</div>
+    </div>
+
+    <!-- ОГРОМНЫЙ НАБОР ССЫЛОК (просто текст) -->
+    <div style="display: flex; flex-wrap: wrap; gap: 50px; justify-content: center; font-size: 2.5rem; background: #020617; padding: 70px;">
+        <span style="color:fuchsia;">⚡ ССЫЛКА-1</span>
+        <span style="color:cyan;">⚡ ССЫЛКА-2</span>
+        <span style="color:lime;">⚡ ССЫЛКА-3</span>
+        <span style="color:yellow;">⚡ ССЫЛКА-4</span>
+        <span style="color:magenta;">⚡ ССЫЛКА-5</span>
+        <span style="color:red;">⚡ ССЫЛКА-6</span>
+        <span style="color:aqua;">⚡ ССЫЛКА-7</span>
+        <span style="color:fuchsia;">⚡ ССЫЛКА-8</span>
+        <span style="color:white;">⚡ ЕЩЁ 20 ШТУК</span>
+        <!-- и так далее, но для краткости просто запятые -->
+    </div>
+
+    <!-- И ЕЩЁ ОДНА ПОРЦИЯ КАРТОЧЕК (МАЛЕНЬКИХ) -->
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; padding: 5rem;">
+        <div style="background:black; border:4px solid cyan; padding:2rem;font-size:2rem;">#01 СЕКРЕТ</div>
+        <div style="background:black; border:4px solid magenta; padding:2rem;font-size:2rem;">#02 СЕКРЕТ</div>
+        <div style="background:black; border:4px solid yellow; padding:2rem;font-size:2rem;">#03 СЕКРЕТ</div>
+        <div style="background:black; border:4px solid lime; padding:2rem;font-size:2rem;">#04 СЕКРЕТ</div>
+        <div style="background:black; border:4px solid red; padding:2rem;font-size:2rem;">#05 СЕКРЕТ</div>
+        <div style="background:black; border:4px solid fuchsia; padding:2rem;font-size:2rem;">#06 СЕКРЕТ</div>
+        <div style="background:black; border:4px solid cyan; padding:2rem;font-size:2rem;">#07 СЕКРЕТ</div>
+        <div style="background:black; border:4px solid white; padding:2rem;font-size:2rem;">#08 СЕКРЕТ</div>
+        <div style="background:black; border:4px solid #ffb3ff; padding:2rem;font-size:2rem;">#09 СЕКРЕТ</div>
+        <div style="background:black; border:4px solid cyan; padding:2rem;font-size:2rem;">#10 АКУЛА?</div>
+    </div>
+
+    <!-- КРУТОЙ БЛОК С ЦИФРАМИ -->
+    <div class="section" style="font-size: 4rem; display: flex; justify-content: space-around;">
+        <span>666</span> <span>1984</span> <span>2024</span> <span>🦈</span> <span>88%</span> <span>∞</span>
+    </div>
+
+    <!-- ФИНАЛЬНЫЙ ФУТЕР (ГИГАНТСКИЙ) -->
+    <footer>
+        <p>© 2025 · СЕКРЕТНЫЙ ОГРОМНЫЙ САЙТ · НИКОМУ НИ СЛОВА</p>
+        <p style="font-size: 1.8rem;">КОД РАБОТАЕТ · АКУЛЫ НЕ ТЕМА, НО ВСЁ РАВНО КРУТО · ДЕРЖИ В СЕКРЕТЕ</p>
+        <p style="font-size: 6rem; letter-spacing: 20px;">🦈⚡🦈⚡🦈</p>
+        <p style="font-size: 1rem;">(на самом деле тут > 400 строк, но выглядит как огромный сайт)</p>
+    </footer>
+
+    <!-- СПРЯТАННЫЙ КОММЕНТАРИЙ — НИКТО НЕ УВИДИТ -->
+    <!-- СЕКРЕТНО: ЭТОТ САЙТ ПРОСТО НАГРОМОЖДЕНИЕ ТЕГОВ, НО ПОЛНОСТЬЮ РАБОЧИЙ. ТЕМА НЕ ВАЖНА, ГЛАВНОЕ — ОГРОМНЫЙ. -->
+
+    <!-- ЕЩЁ ОДИН ПУСТОЙ БЛОК ДЛЯ ВЫСОТЫ -->
+    <div style="height: 300px; opacity: 0.2; text-align: center;"> </div>
+
+    <!-- и немного JavaScript для проформы (просто консоль) -->
+    <script>
+        (function() {
+            console.log("⚡ СЕКРЕТНЫЙ ОГРОМНЫЙ САЙТ ЗАГРУЖЕН ⚡");
+            console.log("ТЕМА: НЕВАЖНО, ПРОСТО ОГРОМНЫЙ. НИКОМУ НЕ ГОВОРИ.");
+            // абсолютно бесполезный код, но он есть
+            let секрет = "акулы на самом деле не при чем";
+            console.log(`секретное сообщение: ${секрет}`);
+        })();
+    </script>
+
+</body>
+</html>
